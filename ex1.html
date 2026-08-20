@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>questao 1</title>
+    <script>
+        class ContaBancaria {
+            constructor(titular,saldoInicial){
+            this.titular = "Paula";
+            this.saldoInicial = 0;
+            }
+            depositar(valor){
+                this.saldoInicial += valor;
+                console.log(`Adicionado: R$${valor}. Saldo atual: R$${this.saldoInicial}`)
+            }
+
+            sacar(valor){
+                if (valor > this.saldoInicial) {
+                    console.log(`Vai arrumar dinheiro`);
+                    return;
+                }
+                this.saldoInicial -= valor;
+                console.log(`Você retirou R$${valor}. Agora você tem R$${this.saldoInicial}`)
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
