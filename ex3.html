@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>questao 3</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff0f5;
+            color: #4a2c3a;
+            padding: 30px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: center;
+            color: #6b4c5e;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+            transition: background-color 0.2s, transform 0.1s;
+            margin: 15px 0;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .painel {
+            background: #ffffff;
+            padding: 20px;
+            border: 2px solid #ffb6c1;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+        }
+
+        .painel h3 {
+            margin-top: 0;
+            color: #ff1493;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #ffe4e1;
+            padding-bottom: 8px;
+        }
+
+        code {
+            background-color: #fff0f5;
+            color: #c71585;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        .painel p {
+            text-align: left;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        class Aluno {
+            constructor(nome) {
+                this.nome = nome;
+                this.media = 0;
+                this.notes = {
+                    trabalho: 0,
+                    prova: 0,
+                    finalizacao: 0,
+                    trabalhoEmEquipe: 0
+                }
+            }
+
+            adicionarNota(trabalho, prova, finalizacao, trabalhoEmEquipe) {
+                this.notes.trabalho = trabalho;
+                this.notes.prova = prova;
+                this.notes.finalizacao = finalizacao;
+                this.notes.trabalhoEmEquipe = trabalhoEmEquipe;
+                console.log(`- Trabalho: ${this.notes.trabalho}`);
+                console.log(`- Prova: ${this.notes.prova}`);
+                console.log(`- Finalização: ${this.notes.finalizacao}`);
+                console.log(`- Trabalho em Equipe: ${this.notes.trabalhoEmEquipe}`);
+            }
+
+            calcularMedia() {
+                const soma = this.notes.trabalho + this.notes.prova + this.notes.finalizacao + this.notes.trabalhoEmEquipe;
+                this.media = soma / 4;
+                console.log(this.media);
+            }
+
+            verificarAprovacao() {
+                if (this.media >= 7) {
+                    console.log(`O ${this.nome} está aprovado com ${this.media}`);
+                } else if (this.media >= 5 && this.media <= 6.9) {
+                    console.log(`O ${this.nome} está em recuperação com ${this.media}`);
+                } else {
+                    console.log(`O ${this.nome} está reprovado com ${this.media}`);
+                }
+            }
+        }
+
+        let estudante;
+
+        function rodarPaula() {
+            estudante = new Aluno("Paula");
+            estudante.adicionarNota(8, 7, 9, 10); 
+            estudante.calcularMedia();
+            estudante.verificarAprovacao();
+        }
+
+        function rodarMirella() {
+            estudante = new Aluno("Mirella");
+            estudante.adicionarNota(0, 10, 0, 10); 
+            estudante.calcularMedia();
+            estudante.verificarAprovacao();
+        }
+
+        function rodarJungkook() {
+            estudante = new Aluno("Jungkook");
+            estudante.adicionarNota(0, 0, 0, 0); 
+            estudante.calcularMedia();
+            estudante.verificarAprovacao();
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Exercício 3 - Aluno</h1>
+    <p>Para ver os resultados clique F12 ou Crtl+Shift+J</p>
+
+    <button onclick="rodarPaula()">Rodar Testes Paula </button>
+
+    <div class="painel">
+        <h3>Comandos executados (Paula):</h3>
+        <p>1. <code>estudante = new Aluno("Paula");</code></p>
+        <p>2. <code>estudante.adicionarNota(8, 7, 9, 10);</code></p>
+        <p>3. <code>estudante.calcularMedia();</code></p>
+        <p>4. <code>estudante.verificarAprovacao();</code></p>
+    </div>
+
+    <button onclick="rodarMirella()">Rodar Testes Mirella </button>
+
+    <div class="painel">
+        <h3>Comandos executados (Mirella):</h3>
+        <p>1. <code>estudante = new Aluno("Mirella");</code></p>
+        <p>2. <code>estudante.adicionarNota(0, 10, 0, 10);</code></p>
+        <p>3. <code>estudante.calcularMedia();</code></p>
+        <p>4. <code>estudante.verificarAprovacao();</code></p>
+    </div>
+
+    <button onclick="rodarJungkook()">Rodar Testes Jungkook </button>
+
+    <div class="painel">
+        <h3>Comandos executados (Jungkook):</h3>
+        <p>1. <code>estudante = new Aluno("Jungkook");</code></p>
+        <p>2. <code>estudante.adicionarNota(0, 0, 0, 0);</code></p>
+        <p>3. <code>estudante.calcularMedia();</code></p>
+        <p>4. <code>estudante.verificarAprovacao();</code></p>
+    </div>
+</body>
+
+</html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>questao 1</title>
+    <title>questao 10</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -86,53 +86,92 @@
         }
     </style>
     <script>
-        class ContaBancaria {
-            constructor(titular, saldoInicial = 0) {
-                this.titular = titular;
-                this.saldo = saldoInicial;
+        class TelevisaoSmart {
+            constructor() {
+                this.canalAtual = 1;
+                this.volume = 10;
+                this.ligada = false;
             }
 
-            depositar(valor) {
-                this.saldo += valor;
-                console.log(`Depósito: +R$ ${valor.toFixed(2)} | Saldo: R$ ${this.saldo.toFixed(2)}`);
+            ligar() {
+                this.ligada = true;
+                console.log("A TV foi ligada.");
             }
 
-            sacar(valor) {
-                if (valor <= this.saldo) {
-                    this.saldo -= valor;
-                    console.log(`Saque: -R$ ${valor.toFixed(2)} | Saldo: R$ ${this.saldo.toFixed(2)}`);
-                } else {
-                    console.log(`Erro: Saldo insuficiente para sacar R$ ${valor.toFixed(2)}. Saldo atual: R$ ${this.saldo.toFixed(2)}`);
+            desligar() {
+                this.ligada = false;
+                console.log("A TV foi desligada.");
+            }
+
+            aumentarVolume() {
+                if (!this.ligada) {
+                    console.log("A TV está desligada! Ligue-a primeiro.");
+                    return;
                 }
+                if (this.volume < 100) {
+                    this.volume++;
+                    console.log(`Volume: ${this.volume}`);
+                } else {
+                    console.log("Volume máximo atingido!");
+                }
+            }
+
+            diminuirVolume() {
+                if (!this.ligada) {
+                    console.log("A TV está desligada! Ligue-a primeiro.");
+                    return;
+                }
+                if (this.volume > 0) {
+                    this.volume--;
+                    console.log(`Volume: ${this.volume}`);
+                } else {
+                    console.log("A TV está no mudo!");
+                }
+            }
+
+            mudarCanal(novoCanal) {
+                if (!this.ligada) {
+                    console.log("A TV está desligada! Ligue-a primeiro.");
+                    return;
+                }
+                this.canalAtual = novoCanal;
+                console.log(`Canal alterado para: ${this.canalAtual}`);
             }
         }
 
-        let minhaConta;
+        const minhaTv = new TelevisaoSmart();
 
         function rodarTestesPadrao() {
-            minhaConta = new ContaBancaria("Marcelo", 100);
-            minhaConta.depositar(50);
-            minhaConta.depositar(150); // Segundo depósito adicionado aqui
-            minhaConta.sacar(30);
-            minhaConta.sacar(500);
+            console.log(" Iniciando Testes da TV ");
+            minhaTv.aumentarVolume();
+            minhaTv.mudarCanal(5);
+            
+            minhaTv.ligar();
+            minhaTv.aumentarVolume();
+            minhaTv.mudarCanal(7);
+            
+            minhaTv.desligar();
+            minhaTv.diminuirVolume();
         }
     </script>
 </head>
 
 <body>
 
-    <h1>Exercício 1 - Conta Bancária</h1>
+    <h1>Exercício 10 - Smart TV</h1>
     <p>Para ver os resultados clique F12 ou Crtl+Shift+J</p>
 
-    <button onclick="rodarTestesPadrao()">Rodar Testes Padrão</button>
+    <button onclick="rodarTestesPadrao()">Controlar TV 🌸</button>
 
     <div class="painel">
         <h3>Comandos executados:</h3>
-        <p>1. <code>minhaConta = new ContaBancaria("Marcelo", 100);</code></p>
-        <p>2. <code>minhaConta.depositar(50);</code></p>
-        <p>3. <code>minhaConta.depositar(150);</code></p>
-        <p>4. <code>minhaConta.sacar(30);</code></p>
-        <p>5. <code>minhaConta.sacar(500);</code></p>
+        <p>1. <code>minhaTv.aumentarVolume();</code></p>
+        <p>2. <code>minhaTv.mudarCanal(5);</code></p>
+        <p>3. <code>minhaTv.ligar();</code></p>
+        <p>4. <code>minhaTv.aumentarVolume();</code></p>
+        <p>5. <code>minhaTv.mudarCanal(7);</code></p>
+        <p>6. <code>minhaTv.desligar();</code></p>
+        <p>7. <code>minhaTv.diminuirVolume();</code></p>
     </div>
 
 </body>

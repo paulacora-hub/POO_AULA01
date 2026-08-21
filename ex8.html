@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>questao 1</title>
+    <title>questao 8</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -86,53 +86,62 @@
         }
     </style>
     <script>
-        class ContaBancaria {
-            constructor(titular, saldoInicial = 0) {
-                this.titular = titular;
-                this.saldo = saldoInicial;
+        class Personagem {
+            constructor(nome, vida, ataque) {
+                this.nome = nome;
+                this.vida = vida;
+                this.ataque = ataque;
             }
 
-            depositar(valor) {
-                this.saldo += valor;
-                console.log(`Depósito: +R$ ${valor.toFixed(2)} | Saldo: R$ ${this.saldo.toFixed(2)}`);
-            }
+            atacar(alvo) {
+                if (this.vida <= 0) {
+                    console.log(`${this.nome} está derrotado e não pode atacar!`);
+                    return;
+                }
 
-            sacar(valor) {
-                if (valor <= this.saldo) {
-                    this.saldo -= valor;
-                    console.log(`Saque: -R$ ${valor.toFixed(2)} | Saldo: R$ ${this.saldo.toFixed(2)}`);
-                } else {
-                    console.log(`Erro: Saldo insuficiente para sacar R$ ${valor.toFixed(2)}. Saldo atual: R$ ${this.saldo.toFixed(2)}`);
+                if (alvo.vida <= 0) {
+                    console.log(`${alvo.nome} já está derrotado!`);
+                    return;
+                }
+
+                alvo.vida -= this.ataque;
+                console.log(`${this.nome} atacou ${alvo.nome} causando ${this.ataque} de dano! (Vida de ${alvo.nome}: ${Math.max(0, alvo.vida)})`);
+
+                if (alvo.vida <= 0) {
+                    console.log(`${alvo.nome} foi derrotado!`);
                 }
             }
         }
 
-        let minhaConta;
+        const guerreiro = new Personagem("Aragorn", 100, 35);
+        const mago = new Personagem("Gandalf", 80, 45);
+        const orc = new Personagem("Orc Chefe", 120, 20);
 
         function rodarTestesPadrao() {
-            minhaConta = new ContaBancaria("Marcelo", 100);
-            minhaConta.depositar(50);
-            minhaConta.depositar(150); // Segundo depósito adicionado aqui
-            minhaConta.sacar(30);
-            minhaConta.sacar(500);
+            console.log("A batalha vai começar");
+            guerreiro.atacar(orc);
+            orc.atacar(mago);
+            mago.atacar(orc);
+            mago.atacar(orc);
+            orc.atacar(guerreiro);
         }
     </script>
 </head>
 
 <body>
 
-    <h1>Exercício 1 - Conta Bancária</h1>
+    <h1>Exercício 8 - Batalha RPG</h1>
     <p>Para ver os resultados clique F12 ou Crtl+Shift+J</p>
 
-    <button onclick="rodarTestesPadrao()">Rodar Testes Padrão</button>
+    <button onclick="rodarTestesPadrao()">Iniciar Combate </button>
 
     <div class="painel">
         <h3>Comandos executados:</h3>
-        <p>1. <code>minhaConta = new ContaBancaria("Marcelo", 100);</code></p>
-        <p>2. <code>minhaConta.depositar(50);</code></p>
-        <p>3. <code>minhaConta.depositar(150);</code></p>
-        <p>4. <code>minhaConta.sacar(30);</code></p>
-        <p>5. <code>minhaConta.sacar(500);</code></p>
+        <p>1. <code>guerreiro.atacar(orc);</code></p>
+        <p>2. <code>orc.atacar(mago);</code></p>
+        <p>3. <code>mago.atacar(orc);</code></p>
+        <p>4. <code>mago.atacar(orc);</code></p>
+        <p>5. <code>orc.atacar(guerreiro);</code></p>
     </div>
 
 </body>

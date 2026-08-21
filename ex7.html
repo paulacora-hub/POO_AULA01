@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>questao 1</title>
+    <title>questao 7</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -86,53 +86,66 @@
         }
     </style>
     <script>
-        class ContaBancaria {
-            constructor(titular, saldoInicial = 0) {
-                this.titular = titular;
-                this.saldo = saldoInicial;
+        class Produto {
+            constructor(id, nome, preco, estoque) {
+                this.id = id;
+                this.nome = nome;
+                this.preco = preco;
+                this.estoque = estoque;
+            }
+        }
+
+        class Carrinho {
+            constructor() {
+                this.itens = [];
             }
 
-            depositar(valor) {
-                this.saldo += valor;
-                console.log(`Depósito: +R$ ${valor.toFixed(2)} | Saldo: R$ ${this.saldo.toFixed(2)}`);
-            }
-
-            sacar(valor) {
-                if (valor <= this.saldo) {
-                    this.saldo -= valor;
-                    console.log(`Saque: -R$ ${valor.toFixed(2)} | Saldo: R$ ${this.saldo.toFixed(2)}`);
+            adicionarProduto(produto, quantidade) {
+                if (produto.estoque >= quantidade) {
+                    produto.estoque -= quantidade; // Corrigido aqui para 'quantidade'
+                    this.itens.push({ produto: produto, quantity: quantidade });
+                    console.log(`${quantidade}x "${produto.nome}" adicionado(s) ao carrinho com sucesso.`);
                 } else {
-                    console.log(`Erro: Saldo insuficiente para sacar R$ ${valor.toFixed(2)}. Saldo atual: R$ ${this.saldo.toFixed(2)}`);
+                    console.log(`Erro: Estoque insuficiente para "${produto.nome}". Quantidade disponível: ${produto.estoque}.`);
                 }
             }
         }
 
-        let minhaConta;
+        const meuCarrinho = new Carrinho();
+
+        const produto1 = new Produto(1, "Teclado Mecânico", 250.00, 5);
+        const produto2 = new Produto(2, "Mouse Gamer", 120.00, 3);
+        const produto3 = new Produto(3, "Headset Wireless", 400.00, 2);
 
         function rodarTestesPadrao() {
-            minhaConta = new ContaBancaria("Marcelo", 100);
-            minhaConta.depositar(50);
-            minhaConta.depositar(150); // Segundo depósito adicionado aqui
-            minhaConta.sacar(30);
-            minhaConta.sacar(500);
+            console.log("Iniciando Testes do Carrinho");
+            
+            meuCarrinho.adicionarProduto(produto2, 2);
+            console.log(`Estoque atual do Mouse Gamer: ${produto2.estoque}`);
+            
+            meuCarrinho.adicionarProduto(produto2, 2);
+            meuCarrinho.adicionarProduto(produto3, 5);
+            
+            console.log("Conteúdo Atual do Carrinho");
+            console.log(meuCarrinho.itens);
         }
     </script>
 </head>
 
 <body>
 
-    <h1>Exercício 1 - Conta Bancária</h1>
+    <h1>Exercício 7 - Carrinho de Compras</h1>
     <p>Para ver os resultados clique F12 ou Crtl+Shift+J</p>
 
-    <button onclick="rodarTestesPadrao()">Rodar Testes Padrão</button>
+    <button onclick="rodarTestesPadrao()">Testar Carrinho e Estoque </button>
 
     <div class="painel">
         <h3>Comandos executados:</h3>
-        <p>1. <code>minhaConta = new ContaBancaria("Marcelo", 100);</code></p>
-        <p>2. <code>minhaConta.depositar(50);</code></p>
-        <p>3. <code>minhaConta.depositar(150);</code></p>
-        <p>4. <code>minhaConta.sacar(30);</code></p>
-        <p>5. <code>minhaConta.sacar(500);</code></p>
+        <p>1. <code>meuCarrinho.adicionarProduto(produto2, 2);</code></p>
+        <p>2. <code>console.log(produto2.estoque);</code></p>
+        <p>3. <code>meuCarrinho.adicionarProduto(produto2, 2);</code></p>
+        <p>4. <code>meuCarrinho.adicionarProduto(produto3, 5);</code></p>
+        <p>5. <code>console.log(meuCarrinho.itens);</code></p>
     </div>
 
 </body>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>questao 9</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff0f5;
+            color: #4a2c3a;
+            padding: 30px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: center;
+            color: #6b4c5e;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+            transition: background-color 0.2s, transform 0.1s;
+            margin: 20px 0;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .painel {
+            background: #ffffff;
+            padding: 20px;
+            border: 2px solid #ffb6c1;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .painel h3 {
+            margin-top: 0;
+            color: #ff1493;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #ffe4e1;
+            padding-bottom: 8px;
+        }
+
+        code {
+            background-color: #fff0f5;
+            color: #c71585;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        .painel p {
+            text-align: left;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        class Tarefa {
+            constructor(descricao) {
+                this.descricao = descricao;
+                this.concluida = false;
+            }
+
+            concluir() {
+                this.concluida = true;
+            }
+
+            reabrir() {
+                this.concluida = false;
+            }
+        }
+
+        class GerenciadorDeTarefas {
+            constructor() {
+                this.tarefas = [];
+            }
+
+            adicionarTarefa(descricao) {
+                const novaTarefa = new Tarefa(descricao);
+                this.tarefas.push(novaTarefa);
+            }
+
+            listarPendentes() {
+                console.log(" Tarefas Pendentes ");
+                for (const tarefa of this.tarefas) {
+                    if (!tarefa.concluida) {
+                        console.log(`- ${tarefa.descricao}`);
+                    }
+                }
+            }
+
+            obterEstatisticas() {
+                const total = this.tarefas.length;
+                if (total === 0) {
+                    console.log("Nenhuma tarefa cadastrada.");
+                    return;
+                }
+
+                let concluidas = 0;
+                for (const tarefa of this.tarefas) {
+                    if (tarefa.concluida) {
+                        concluidas++;
+                    }
+                }
+
+                const porcentagem = (concluidas / total) * 100;
+                console.log(`Total de tarefas: ${total}`);
+                console.log(`Concluídas: ${concluidas}`);
+                console.log(`Progresso: ${porcentagem.toFixed(0)}% das tarefas concluídas.`);
+            }
+        }
+
+        const meuGerenciador = new GerenciadorDeTarefas();
+
+        meuGerenciador.adicionarTarefa("Estudar Programação Orientada a Objetos");
+        meuGerenciador.adicionarTarefa("Fazer os exercícios do Professor Marcelo");
+        meuGerenciador.adicionarTarefa("Revisar o código no console");
+        meuGerenciador.adicionarTarefa("Entregar a lista de JavaScript");
+
+        function rodarTestesPadrao() {
+            console.log(" Estado Inicial ");
+            meuGerenciador.listarPendentes();
+            meuGerenciador.obterEstatisticas();
+            
+            console.log(" Concluindo duas tarefas ");
+            meuGerenciador.tarefas[0].concluir();
+            meuGerenciador.tarefas[1].concluir();
+            meuGerenciador.listarPendentes();
+            meuGerenciador.obterEstatisticas();
+            
+            console.log(" Reabrindo a primeira tarefa");
+            meuGerenciador.tarefas[0].reabrir();
+            meuGerenciador.obterEstatisticas();
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Exercício 9 - To-Do List</h1>
+    <p>Para ver os resultados clique F12 ou Crtl+Shift+J</p>
+
+    <button onclick="rodarTestesPadrao()">Gerenciar Tarefas </button>
+
+    <div class="painel">
+        <h3>Comandos executados:</h3>
+        <p>1. <code>meuGerenciador.listarPendentes();</code></p>
+        <p>2. <code>meuGerenciador.obterEstatisticas();</code></p>
+        <p>3. <code>meuGerenciador.tarefas[0].concluir();</code></p>
+        <p>4. <code>meuGerenciador.tarefas[1].concluir();</code></p>
+        <p>5. <code>meuGerenciador.listarPendentes();</code></p>
+        <p>6. <code>meuGerenciador.obterEstatisticas();</code></p>
+        <p>7. <code>meuGerenciador.tarefas[0].reabrir();</code></p>
+        <p>8. <code>meuGerenciador.obterEstatisticas();</code></p>
+    </div>
+
+</body>
+
+</html>
